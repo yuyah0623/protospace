@@ -30,11 +30,11 @@ copy
 concept
 user_id
 
-中間テーブル
 - captured_images
 prototype_id
 
 - comments
+text
 user_id
 prototype_id
 
@@ -44,12 +44,13 @@ prototype_id
 
 gemを使用するので、実際に使ってからカラムを決める
 - tags
+name
 prototype_id
 
 ### アソシエーション
 - User.rb
 has_many prototypes
-has_many ilkes
+has_many likes
 has_many comments
 
 - Prototype.rb
