@@ -1,28 +1,65 @@
-== README
+# protospace
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+開発者が作成したプロトタイプを投稿・共有するサービス。
+投稿されたプロトタイプにはコメントはいいね！もできる。
 
-Things you may want to cover:
+## 機能
+- ユーザー管理ができる
+- プロトタイプ投稿・編集・削除ができる
+- タグ管理ができる
+- 画像投稿ができる
+- コメントができる
+- いいねができる
+- ランキングページ
 
-* Ruby version
+## DB設計
+- テーブル名
+追加するカラム
 
-* System dependencies
+- users
+avatar
 
-* Configuration
+- prototypes
+user_id
 
-* Database creation
+中間テーブル
+- captured_images
+prototype_id
 
-* Database initialization
+- comments
+user_id
+prototype_id
 
-* How to run the test suite
+- likes
+user_id
+prototype_id
 
-* Services (job queues, cache servers, search engines, etc.)
+gemを使用するので、実際に使ってからカラムを決める
+- tags
+prototype_id
 
-* Deployment instructions
+### アソシエーション
+- User.rb
+has_many prototypes
+has_many ilkes
+has_many comments
 
-* ...
+- Prototype.rb
+has_many likes
+has_many comments
+has_many tags
+has_many captured_images
 
+## その他
+すえまってぃーの参考にして便利な物がいくつか挙げられていたので使ってみる。
+- bullet
+N+1問題を検出
+- carrier wave
+画像投稿
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- attribute_nester_for
+フォーム入力の際に複数のモデルを扱う
+
+- act_as_taggable_on
+タグ機能の実装に使用
