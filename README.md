@@ -18,9 +18,16 @@
 追加するカラム
 
 - users
+name
+group
+work
+profile
 avatar
 
 - prototypes
+title
+copy
+concept
 user_id
 
 中間テーブル
