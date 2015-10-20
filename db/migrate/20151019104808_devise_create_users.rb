@@ -22,7 +22,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Add Columns
       t.string   :name
       t.string   :work
-      t.integer  :group_id
+      t.string  :group
       t.text     :profile
       t.string   :avatar
       ## Confirmable

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151019104808) do
     t.string   "last_sign_in_ip",        limit: 255
     t.string   "name",                   limit: 255
     t.string   "work",                   limit: 255
-    t.integer  "group_id",               limit: 4
+    t.string   "group",                  limit: 255
     t.text     "profile",                limit: 65535
     t.string   "avatar",                 limit: 255
     t.datetime "created_at",                                        null: false
