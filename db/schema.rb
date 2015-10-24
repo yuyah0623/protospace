@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20151023093742) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "prototypes", ["user_id"], name: "index_prototypes_on_user_id", using: :btree
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
     t.integer  "taggable_id",   limit: 4
@@ -75,4 +77,5 @@ ActiveRecord::Schema.define(version: 20151023093742) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "captured_images", "prototypes"
+  add_foreign_key "prototypes", "users"
 end
