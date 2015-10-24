@@ -9,7 +9,7 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    current_user.prototypes.create(create_params)
+    current_user.prototypes.create(prototype_params)
     redirect_to root_path
   end
 
