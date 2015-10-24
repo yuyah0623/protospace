@@ -9,8 +9,12 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    current_user.prototypes.create(prototype_params)
-    redirect_to root_path
+    prototype = current_user.prototypes.new(prototype_params)
+    if prototype.save
+      redirect_to root_path, success: "Successfully created your prototype."
+    else
+      redirect_to new_prototype_path, warning: "Unfortunately failed to create."
+    end
   end
 
   private
