@@ -1,0 +1,24 @@
+.col-sm-4.col-md-3.proto-content
+  .dropdown.drop_menu_location
+    = button_tag "Action", class: "btn btn-default dropdown-toggle", id: "dropdownMenu", "data-toggle" => "dropdown", "aria-expanded" => "true", type: "button"
+    %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+      %li
+        = link_to "Delete", prototype_path(prototype), rel: "nofllow", "data-method" => "delete"
+      %li
+        = link_to "Edit", edit_prototype_path(prototype)
+  .thumbnail
+    - if prototype.captured_images
+      = link_to image_tag(prototype.captured_images[0].name), prototype_path(prototype)
+    - else
+      = link_to image_tag("no_image.png"), prototype_path(prototype)
+    .caption
+      %h3
+        = prototype.title
+      .proto-meta
+        .proto-date
+          Apr 26
+      %ul.proto-tag-list.list-inline
+        %li
+          %a{:href => "#", :class => "btn btn-default"} iPad
+        %li
+          %a{:href => "#", :class => "btn btn-default"} wireframe
