@@ -25,9 +25,22 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.find(params[:id])
   end
 
+  def update
+    prototype = Prototype.find(params[:id])
+    if prototype.update(update_params)
+      redirect_to prototype_path(prototype), success: "Successfully updated your prototype."
+    else
+      redirect_to edit_prototype_path, warning: "Unfortunately failed to update."
+    end
+  end
   private
   def prototype_params
     tag_list = params[:prototype][:tag_list]
     params.require(:prototype).permit(:title, :copy, :concept, captured_images_attributes: [:name, :status]).merge(tag_list: tag_list)
+  end
+
+  def update_params
+    tag_list = params[:prototype][:tag_list]
+    params.require(:prototype).permit(:title, :copy, :concept, captured_images_attributes: [:id, :name, :status]).merge(tag_list: tag_list)
   end
 end
