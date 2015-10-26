@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
-
   def index
+    @prototypes = Prototype.all
   end
 
   def new
@@ -15,6 +15,14 @@ class PrototypesController < ApplicationController
     else
       redirect_to new_prototype_path, warning: "Unfortunately failed to create."
     end
+  end
+
+  def show
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def edit
+    @prototype = Prototype.find(params[:id])
   end
 
   private
