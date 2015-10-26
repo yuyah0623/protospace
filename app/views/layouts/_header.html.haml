@@ -11,20 +11,26 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           .btn.btn-primary.navbar-btn
-            %a{href: "/login"}
+            %a{ href: "/login" }
               Get Started
       //login
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", href: "#", role: "button"}
+          %a.dropdown-toggle{ "aria-expanded" => "false", "data-toggle" => "dropdown", href: "#", role: "button" }
             UserName
             %span.caret
-          %ul.dropdown-menu{role: "menu"}
-            %li
-              %a{href: "#"} Profile Edit
-            %li
-              %a{href: "#"} Logout
+          %ul.dropdown-menu{ role: "menu" }
+            - if current_user
+              %li
+                = link_to 'My Page', user_path(current_user)
+              %li
+                = link_to 'Profile Edit', edit_user_path(current_user)
+              %li
+                = link_to 'Logout', destroy_user_session_path, method: "delete"
+            - else
+              %li
+                = link_to 'Login', new_user_session_path
         %li
           .btn.btn-primary.navbar-btn
-            %a{href: "/prototypes/new"}
+            %a{ href: "/prototypes/new" }
               New Proto
