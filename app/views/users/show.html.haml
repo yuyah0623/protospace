@@ -1,0 +1,50 @@
+.container.user-page
+  %header.user-nav
+    .media
+      .media-left
+        %a{:href => "#"}
+          = image_tag(current_user.avatar, alt: "", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", style: "width: 64px; height: 64px;", class: "media-object")
+      .media-body
+        %h4#top-aligned-media.media-heading
+          Top aligned media
+          %span.label.label-default.project-number
+            = current_user.prototypes.count
+            %i Projects
+        .proto-user
+          %span.degree
+            = current_user.group
+            = current_user.work
+        .row
+          .col-md-6
+            %h4 Profile
+            %p
+              = current_user.profile
+          .col-md-6
+            %h4 Works
+            %p
+              = current_user.work
+.container.proto-list
+  .row
+    = render partial: "users/prototype", collection: current_user.prototypes
+
+
+.text-center
+  %ul.pagination
+    %li.disabled
+      %a{"aria-label" => "Previous", :href => "#"}
+        %span{"aria-hidden" => "true"} «
+    %li.active
+      %a{:href => "#"}
+        1
+        %span.sr-only (current)
+    %li
+      %a{:href => "#"} 2
+    %li
+      %a{:href => "#"} 3
+    %li
+      %a{:href => "#"} 4
+    %li
+      %a{:href => "#"} 5
+    %li
+      %a{"aria-label" => "Next", :href => "#"}
+        %span{"aria-hidden" => "true"} »
