@@ -1,4 +1,6 @@
 class PrototypesController < ApplicationController
+
+  before_action :set_prototype, only: [:show, :edit, :update, :destroy]
   def index
     @prototypes = Prototype.order(created_at: :desc)
   end
@@ -18,25 +20,21 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    if prototype.update(update_params)
-      redirect_to prototype_path(prototype), success: "Successfully updated your prototype."
+    if @prototype.update(update_params)
+      redirect_to prototype_path(@prototype), success: "Successfully updated your prototype."
     else
       redirect_to edit_prototype_path, warning: "Unfortunately failed to update."
     end
   end
 
   def destroy
-    prototype = Prototype.find(params[:id])
-    prototype.destroy
+    @prototype.destroy
     redirect_to user_path(current_user)
   end
 
@@ -49,5 +47,9 @@ class PrototypesController < ApplicationController
   def update_params
     tag_list = params[:prototype][:tag_list]
     params.require(:prototype).permit(:title, :copy, :concept, captured_images_attributes: [:id, :name, :status]).merge(tag_list: tag_list)
+  end
+
+  def set_prototype
+    @prototype = Prototype.find(params[:id])
   end
 end
