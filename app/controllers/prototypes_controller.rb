@@ -33,6 +33,13 @@ class PrototypesController < ApplicationController
       redirect_to edit_prototype_path, warning: "Unfortunately failed to update."
     end
   end
+
+  def destroy
+    prototype = Prototype.find(params[:id])
+    prototype.destroy
+    redirect_to user_path(current_user)
+  end
+
   private
   def prototype_params
     tag_list = params[:prototype][:tag_list]
