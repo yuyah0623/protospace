@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.order(created_at: :desc)
   end
 
   def new
