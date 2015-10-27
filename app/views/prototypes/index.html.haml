@@ -14,7 +14,10 @@
 
 .container.proto-list
   .row
-    = render @prototypes
+    - if @prototypes
+      = render @prototypes
+    - else
+      nothing
 
 .text-center
   %ul.pagination
