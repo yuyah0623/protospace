@@ -11,4 +11,8 @@ class Prototype < ActiveRecord::Base
   def reject_captured_image(attributed)
     attributed['name'].blank?
   end
+
+  def main_image
+    captured_images.main.first.name
+  end
 end
