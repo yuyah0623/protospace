@@ -1,0 +1,38 @@
+= form_for(@prototype, html: { class: "container proto-new" }) do |f|
+  .col-md-8.col-md-offset-2
+    %header.row.user-nav.row
+      .col-sm-12
+        = f.text_field :title, class: "proto-new-title", placeholder: "Title"
+    .row
+      .col-sm-12
+        .cover-image-upload
+          = f.fields_for :captured_images, @prototype.captured_images.main do |captured_image|
+            = captured_image.file_field :name
+            = captured_image.hidden_field :status, value: :main
+      .col-sm-12
+        %ul.proto-sub-list.list-group
+          - @prototype.captured_images.sub.each do |image|
+            %li.list-group-item.col-md-4
+              .image-upload
+                = f.fields_for :captured_images, image do |captured_image|
+                  = captured_image.file_field :name
+                  = captured_image.hidden_field :status, value: :sub
+          %li.list-group-item.col-md-4
+            .image-upload-plus
+              %span +
+    .row.proto-description
+      .col-sm-12
+        = f.text_field :copy, placeholder: "Catch Copy"
+      .col-sm-12
+        = f.text_area :concept, cols: "30", rows: "4", placeholder: "Concept"
+      .col-sm-12
+        %h4 Tag List
+        .row
+          .col-sm-3
+            = text_field_tag 'prototype[tag_list][]', "#{@prototype.tag_list[0]}", placeholder: "Web Design"
+          .col-sm-3
+            = text_field_tag 'prototype[tag_list][]', "#{@prototype.tag_list[1]}", placeholder: "UI"
+          .col-sm-3
+            = text_field_tag 'prototype[tag_list][]', "#{@prototype.tag_list[2]}", placeholder: "Application"
+    .row.text-center.proto-btn
+      = f.submit "Publish", class: "btn btn-lg btn-primary btn-block"
