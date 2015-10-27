@@ -8,6 +8,7 @@
         .cover-image-upload
           = f.fields_for :captured_images do |captured_image|
             = captured_image.file_field :name
+            = captured_image.hidden_field :status, value: :main
       .col-sm-12
         %ul.proto-sub-list.list-group
           - 2.times do
@@ -15,6 +16,7 @@
               .image-upload
                 = f.fields_for :captured_images do |captured_image|
                   = captured_image.file_field :name
+                  = captured_image.hidden_field :status, value: :sub
           %li.list-group-item.col-md-4
             .image-upload-plus
               %span +
