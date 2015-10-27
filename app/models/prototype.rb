@@ -4,7 +4,11 @@ class Prototype < ActiveRecord::Base
 
   validates :title, :copy, :concept, :captured_images, presence: true
 
-  accepts_nested_attributes_for :captured_images, reject_if: proc { |attribute| attribute['name'].blank? }
+  accepts_nested_attributes_for :captured_images, reject_if: :reject_captured_image
 
   acts_as_taggable_on :tags
+
+  def reject_captured_image(attributed)
+    attributed['name'].blank?
+  end
 end
