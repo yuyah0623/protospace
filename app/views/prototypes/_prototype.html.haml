@@ -1,12 +1,14 @@
 .col-sm-4.col-md-3.proto-content
   .thumbnail
-    %a{ href: "" }
-      = image_tag("sample.png")
+    %a{ href: prototype_path(prototype) }
+      = image_tag(prototype.captured_images.main.first.name)
       .caption
-        %h3 Salvation Army on iPad App Wireframe
+        %h3
+          = prototype.title
         .proto-meta
           .proto-user
-            %a{ href: "#" } by user
+            %a{ href: "#" }
+              = "by " + prototype.user.name
           .proto-posted
             Apr 26
         %ul.proto-tag-list.list-inline
