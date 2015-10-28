@@ -11,13 +11,13 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           .btn.btn-primary.navbar-btn
-            %a{ href: "/login" }
+            %a{ href: new_user_session_path }
               Get Started
       //login
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{ "aria-expanded" => "false", "data-toggle" => "dropdown", href: "#", role: "button" }
-            UserName
+            = current_user.name
             %span.caret
           %ul.dropdown-menu{ role: "menu" }
             - if current_user
