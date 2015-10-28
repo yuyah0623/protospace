@@ -15,4 +15,8 @@ class Prototype < ActiveRecord::Base
   def main_image
     captured_images.main.first.name
   end
+
+  def sub_images
+    captured_images.sub
+  end
 end

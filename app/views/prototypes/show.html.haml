@@ -38,7 +38,7 @@
       = image_tag(@prototype.main_image, class: 'img-responsive')
     .col-md-3
       %ul.proto-sub-list.list-group
-        - @prototype.captured_images.sub.each do |image|
+        - @prototype.sub_images.each do |image|
           %li.list-group-item
             = image_tag(image.name, class: 'img-responsive')
   .row.proto-description
