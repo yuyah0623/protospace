@@ -1,0 +1,9 @@
+$('.proto-content').html(
+  '<%= j(render partial: "users/prototype", collection: current_user.prototypes) %>'
+  );
+$('.navbar').after(
+  '<div class="alert alert-success">Successfully deleted your prototype.</div>'
+  );
+$('.project-number').html(
+  '<%= current_user.prototypes.count %><i>Projects</i>'
+  );

@@ -35,7 +35,6 @@ class PrototypesController < ApplicationController
 
   def destroy
     @prototype.destroy
-    redirect_to user_path(current_user)
   end
 
   private
