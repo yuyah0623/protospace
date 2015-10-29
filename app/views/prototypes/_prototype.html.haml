@@ -1,0 +1,17 @@
+.col-sm-4.col-md-3.proto-content
+  .thumbnail
+    %a{ href: prototype_path(prototype) }
+      = image_tag(prototype.captured_images.main.first.name)
+      .caption
+        %h3
+          = prototype.title
+        .proto-meta
+          .proto-user
+            %a{ href: "#" }
+              = "by " + prototype.user.name
+          .proto-posted
+            Apr 26
+        %ul.proto-tag-list.list-inline
+          %li
+            %a{ href: "#", class: "btn btn-default" } iPad
+          %li

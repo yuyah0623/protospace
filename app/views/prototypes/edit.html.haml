@@ -6,15 +6,15 @@
     .row
       .col-sm-12
         .cover-image-upload
-          = f.fields_for :captured_images do |captured_image|
+          = f.fields_for :captured_images, @prototype.captured_images.main do |captured_image|
             = captured_image.file_field :name
             = captured_image.hidden_field :status, value: :main
       .col-sm-12
         %ul.proto-sub-list.list-group
-          - 2.times do
+          - @prototype.captured_images.sub.each do |image|
             %li.list-group-item.col-md-4
               .image-upload
-                = f.fields_for :captured_images do |captured_image|
+                = f.fields_for :captured_images, image do |captured_image|
                   = captured_image.file_field :name
                   = captured_image.hidden_field :status, value: :sub
           %li.list-group-item.col-md-4
@@ -29,10 +29,10 @@
         %h4 Tag List
         .row
           .col-sm-3
-            = text_field_tag 'prototype[tag_list][]', "", placeholder: "Web Design"
+            = text_field_tag 'prototype[tag_list][]', "#{@prototype.tag_list[0]}", placeholder: "Web Design"
           .col-sm-3
-            = text_field_tag 'prototype[tag_list][]', "", placeholder: "UI"
+            = text_field_tag 'prototype[tag_list][]', "#{@prototype.tag_list[1]}", placeholder: "UI"
           .col-sm-3
-            = text_field_tag 'prototype[tag_list][]', "", placeholder: "Application"
+            = text_field_tag 'prototype[tag_list][]', "#{@prototype.tag_list[2]}", placeholder: "Application"
     .row.text-center.proto-btn
       = f.submit "Publish", class: "btn btn-lg btn-primary btn-block"
