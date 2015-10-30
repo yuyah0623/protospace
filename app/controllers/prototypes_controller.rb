@@ -20,6 +20,8 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    @comment = current_user.comments.new
+    @comments = @prototype.comments
   end
 
   def edit
