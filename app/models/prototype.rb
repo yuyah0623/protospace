@@ -1,5 +1,6 @@
 class Prototype < ActiveRecord::Base
   has_many :captured_images, dependent: :delete_all
+  has_many :comments
   belongs_to :user
 
   validates :title, :copy, :concept, :captured_images, presence: true
