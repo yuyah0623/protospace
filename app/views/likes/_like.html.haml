@@ -1,0 +1,9 @@
+.col-md-6.text-right
+  %button.btn.btn-default
+    - if current_user.likes.exists?(prototype_id: @prototype.id)
+      = link_to image_tag("heart_red.svg"), like_path(@prototype), method: :delete, remote: true
+    - else
+      = link_to image_tag("icon_heart.svg"), likes_path(prototype_id: @prototype.id), method: :post, remote: true
+    Like
+    %span#likes-num
+      = @prototype.likes_count

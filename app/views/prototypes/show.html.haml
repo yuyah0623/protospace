@@ -2,37 +2,19 @@
   %header.row.user-nav
     .col-md-6
       .media
-        - if current_user
-          .media-left
-            %a{ href: user_path(@prototype.user) }
-              = image_tag(current_user.avatar, alt: "", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", class: "media-object", style: "width: 64px; height: 64px;")
-          .media-body
-            %h4#top-aligned-media.media-heading
-              Top aligned media
-            .proto-user
-              %a{ href: "" }
-                = "by " + current_user.name
-              %span.degree
-                = current_user.group
-                = current_user.work
-        - else
-          .media-left
-            %a{ href: "#" }
-              = image_tag("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEzLjQ2MDkzNzUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==", style: "width: 64px; height: 64px;", alt: "", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", class: "media-object", style: "width: 64px; height: 64px;")
-          .media-body
-            %h4#top-aligned-media.media-heading
-              Top aligned media
-            .proto-user
-              %a{ href: "" }
-                = "by " + current_user.name
-              %span.degree
-                = current_user.group
-                = current_user.work
-    .col-md-6.text-right
-      %button.btn.btn-default
-        = image_tag("icon_heart.svg")
-        Like
-        %span.num 20
+        .media-left
+          = link_to user_path(@prototype.user) do
+            = image_tag(@prototype.user.avatar, alt: "#{@prototype.user.name}", "data-holder-rendered" => "true", "data-src" => "holder.js/64x64", class: "media-object", style: "width: 64px; height: 64px;")
+        .media-body
+          %h4#top-aligned-media.media-heading
+            = @prototype.title
+          .proto-user
+            = link_to "by " + @prototype.user.name, user_path(@prototype.user)
+            %span.degree
+              = @prototype.user.group
+              = @prototype.user.work
+    #likes-area
+      = render partial: 'likes/like'
   .row
     .col-md-9
       = image_tag(@prototype.main_image, class: 'img-responsive')
