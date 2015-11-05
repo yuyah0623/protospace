@@ -12,7 +12,4 @@
           .proto-posted
             Apr 26
         %ul.proto-tag-list.list-inline
-          %li
-            - prototype.tag_list.each do |tag|
-              = link_to tag, tag_path(tag), class: "btn btn-default"
-          %li
+          = render partial: "prototypes/tag", collection: prototype.tag_list
